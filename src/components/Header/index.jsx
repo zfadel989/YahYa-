@@ -2,9 +2,10 @@ import React from 'react'
 import "./Header.css"
 const Header = () => {
   return (
-    <div>
-      Header
-    </div>
+    <header id='header'>
+      
+      <div className='container full__height'></div>
+    </header>
   )
 }
 

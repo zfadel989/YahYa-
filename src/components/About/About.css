@@ -91,3 +91,43 @@
 }
 
 
+
+
+@media (max-width:900px){
+#about .container{
+    grid-template-columns: 100%;
+}
+
+
+
+
+#about .title,
+#about .sub__title,
+#about .description{
+text-align: center;
+}
+
+
+
+#about .buttons__container{
+    justify-content: center;
+    gap: 10px;
+}
+
+#about .group .row .icon__container{
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+}
+
+
+
+
+
+@media(max-width:600px){
+    #about .company__media__container .box{
+        width: 90px;
+        height: 90px;
+    }
+}

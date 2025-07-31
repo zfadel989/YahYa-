@@ -64,7 +64,9 @@
     margin: auto;
     overflow: hidden;
     border-radius: var(--radius-2);
-    transition: var(--transition)
+    transition: var(--transition);
+    /* opacity: 0; */
+
 }
 
 

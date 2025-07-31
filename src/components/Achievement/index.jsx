@@ -1,8 +1,10 @@
-import React ,{useState,useEffect}from 'react'
+import React ,{useState,useEffect,useRef}from 'react'
 import "./Achievement.css"
 import { FaAward, FaDiagramProject, FaUsersLine } from 'react-icons/fa6'
 import Odometer from 'react-odometerjs'
 import { GiTeamIdea } from 'react-icons/gi'
+import gsap from 'gsap'
+import { useGSAP } from "@gsap/react";
 
 
 
@@ -11,6 +13,9 @@ const Achievement = () => {
     const [projects,setProjects]= useState(0);
     const [teams,setTeams]= useState(0);
     const [awards,setAwards]= useState(0);
+
+    const container = useRef(null);
+
 
     useEffect(()=>{
         const timeOutId = setTimeout(()=>{
@@ -22,8 +27,23 @@ const Achievement = () => {
         return () =>clearTimeout(timeOutId);
     },[])
 
+    useGSAP(()=>{
+    const timeline =gsap.timeline();
+    timeline
+    .from(
+        ".achievement",
+        {
+            delay:1.5,
+            x:100,
+            stragger:.5,
+            opacity:0,
+        }
+    )  
+    },{scope:container})
+
+
   return (
-    <div className='achievement__container'>
+    <div className='achievement__container' ref={container}>
 
         {/* Start Achievement */}
     <div className='achievement'>

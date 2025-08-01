@@ -1,13 +1,45 @@
-import React from 'react'
+import React,{useRef} from 'react'
 import "./Project.css"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import {projects} from "../../data";
-
+import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 
 import Slider from "react-slick"
 const Project = () => {
+
+  const container =useRef(null)
+useGSAP(()=>{
+  const timeline=gsap.timeline({
+    delay:.5,
+    scrollTrigger:{
+      trigger:container.current,
+      start:"20% bottom",
+      end:"bottom top",
+    }
+  })
+  timeline
+
+  .from(".title", {y:-50,opacity:0})
+
+
+  .from(
+    ".sub__title",
+    {y:-50,opacity:0}
+  )
+  .fromTo(
+    ".slick-slide",
+    {x:100,opacity:0},
+    {opacity:1,stagger:.5,x:0}
+  )
+
+},{scope:container})
+
+
   const settings = {
     infinite: true,
     speed: 3000,
@@ -27,7 +59,7 @@ const Project = () => {
     ]
   };
   return (
-    <section  id='project'>
+    <section  id='project'ref={container}>
       <div className='project__top'>
         <h1 className='title'>Our<span className='g-text'> Porjects</span></h1>
         <h3 className='sub__title'>Innovative construction projects, exceptional craftsmanship.

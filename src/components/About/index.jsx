@@ -1,14 +1,63 @@
-import React from 'react'
-import "./About.css"
-import { about_image, building_1,building_2 ,building_3} from "../../assets";
+import React, { useRef } from 'react';
+import "./About.css";
+import { about_image, building_1, building_2, building_3 } from "../../assets";
 import { FaCheck } from "react-icons/fa";
 import { Link } from "react-scroll";
+import gsap from 'gsap';
+import { useGSAP } from "@gsap/react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+
 
 
 const About = () => {
+const container =useRef(null)
+useGSAP(()=>{
+  const timeline=gsap.timeline({
+    delay:.5,
+    scrollTrigger:{
+      trigger:container.current,
+      start:"20% bottom",
+      end:"bottom top",
+    }
+  })
+  timeline
+  .from(
+    ".company__photo",
+    {x:-50,opacity:0}
+  )
+  .from(".title", {y:-50,opacity:0})
+
+
+  .from(
+    ".sub__title",
+    {y:-50,opacity:0}
+  )
+  .from(
+    ".box",
+    {x:-50,opacity:0,stagger:.5}
+  )
+  .from(
+    ".description",
+    {y:-50,opacity:0}
+  )
+  .from(
+    ".group",
+    {y:-50,opacity:0}
+  )
+  .from(
+    ".buttons__container",
+    {y:-50,opacity:0}
+  )
+},{scope:container})
+
+
   return (
     <section id='about'>
-      <div className='container'>
+      <div className='container' ref={container}>
+
         <div className='column company__photo'>
           <img src={about_image} alt='Benvix' />
         </div>
@@ -32,7 +81,8 @@ const About = () => {
             <img src={building_3} alt='' />
           </div>
         </div>
-        <p className='"text__muted description'>
+        <p className='text__muted description'>
+
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
           Quae dicta natus corporis. Aspernatur, adipisci dolorem culpa provident 
           nemo quo dolores ipsum eaque commodi quasi, ad modi nisi

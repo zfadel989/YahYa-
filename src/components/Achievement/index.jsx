@@ -27,6 +27,10 @@ const Achievement = () => {
         return () =>clearTimeout(timeOutId);
     },[])
 
+
+
+
+
     useGSAP(()=>{
     const timeline =gsap.timeline();
     timeline
